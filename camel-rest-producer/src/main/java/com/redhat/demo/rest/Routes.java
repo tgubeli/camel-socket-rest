@@ -54,5 +54,13 @@ public class Routes extends RouteBuilder {
                )
                .marshal(dataFormat);
 
+        // kafka producer
+        from("direct:toKafka")
+                .routeId("fromRestToKafka")
+                .log("Mensaje Recibido : \"${body}\"")
+                .log("Enviando a Topico de Kafka : \"${body}\"")
+                .to("kafka:{{kafka.topic.name}}")
+                .log(">>> Mensaje enviado a Topico de Kafka exitosamente!");
+
     }
 }

@@ -39,7 +39,7 @@ async def main():
     async with websockets.serve(
         slow_echo,
         host="",
-        port=80,
+        port=32080,
         process_request=health_check,
     ):
         await stop
